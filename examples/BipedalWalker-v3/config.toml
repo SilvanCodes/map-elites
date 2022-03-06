@@ -1,0 +1,96 @@
+[map_elites]
+map_resolution = 8
+feature_ranges = [
+    # [-1.5, 0.5], # hull angle
+    # [-1.0, 1.0], # hull angular velocity
+
+    # [-1.0, 1.0], # x velocity kk
+    # [-1.0, 1.0], # y velocity kk
+    # leg one
+    [-0.8, 1.1], # hip angle kk
+    # [-1.0, 1.0], # hip speed
+    [-0.6, 0.95], # knee angle kk
+    # [-1.0, 1.0], # knee speed
+    [0.0, 1.0], # ground contact boolean kk
+    # leg one
+    [-0.8, 1.1], # hip angle kk
+    # [-1.0, 1.0], # hip speed
+    [-0.6, 0.95], # knee angle kk
+    # [-1.0, 1.0], # knee speed
+    [0.0, 1.0], # ground contact boolean kk
+
+    # standard deviation of previous 14 values
+    # [-1.0, 1.0],
+    # [-1.0, 1.0],
+    # [-1.0, 1.0],
+    # [-1.0, 1.0],
+    # [-1.0, 1.0],
+    # [-1.0, 1.0],
+    # [-1.0, 1.0],
+    # [-1.0, 1.0],
+    # [-1.0, 1.0],
+    # [-1.0, 1.0],
+    # [-1.0, 1.0],
+    # [-1.0, 1.0],
+    # [-1.0, 1.0],
+    # [-1.0, 1.0],
+]
+initial_runs = 10_000
+batch_size = 1000
+
+[genome.structure]
+inputs = 25
+outputs = 4
+inputs_connected_percent = 1.0
+outputs_activation = "Tanh"
+weight_std_dev = 0.1
+weight_cap = 1.0
+
+[[genome.mutations]]
+type = "add_connection"
+chance = 0.1
+
+[[genome.mutations]]
+type = "add_recurrent_connection"
+chance = 0.01
+
+[[genome.mutations]]
+type = "add_node"
+chance = 0.005
+activation_pool = [
+    "Sigmoid",
+    "Tanh",
+    "Relu",
+    "Linear",
+    "Gaussian",
+    "Step",
+    "Sine",
+    "Cosine",
+    "Inverse",
+    "Absolute",
+]
+
+[[genome.mutations]]
+type = "remove_node"
+chance = 0.001
+
+[[genome.mutations]]
+type = "change_weights"
+chance = 1.0
+percent_perturbed = 0.5
+
+[[genome.mutations]]
+type = "change_activation"
+chance = 0.05
+activation_pool = [
+    "Sigmoid",
+    "Tanh",
+    "Relu",
+    "Linear",
+    "Gaussian",
+    "Step",
+    "Sine",
+    "Cosine",
+    "Inverse",
+    "Absolute",
+]

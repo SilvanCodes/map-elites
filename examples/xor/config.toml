@@ -1,0 +1,57 @@
+[map_elites]
+map_resolution = 16
+feature_ranges = [
+    [0, 10],
+    [0, 10]
+]
+initial_runs = 1000
+batch_size = 100
+
+[genome.structure]
+inputs = 3
+outputs = 1
+inputs_connected_percent = 1.0
+outputs_activation = "Tanh"
+weight_std_dev = 3.0
+weight_cap = 9.0
+
+[[genome.mutations]]
+type = "add_connection"
+chance = 0.1
+
+[[genome.mutations]]
+type = "add_node"
+chance = 0.05
+activation_pool = [
+    "Sigmoid",
+    "Tanh",
+    "Relu",
+    "Linear",
+    "Gaussian",
+    "Step",
+    "Sine",
+    "Cosine",
+    "Inverse",
+    "Absolute",
+]
+
+[[genome.mutations]]
+type = "change_weights"
+chance = 1.0
+percent_perturbed = 0.5
+
+[[genome.mutations]]
+type = "change_activation"
+chance = 0.05
+activation_pool = [
+    "Sigmoid",
+    "Tanh",
+    "Relu",
+    "Linear",
+    "Gaussian",
+    "Step",
+    "Sine",
+    "Cosine",
+    "Inverse",
+    "Absolute",
+]
